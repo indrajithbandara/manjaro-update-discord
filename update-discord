@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [[ ! $(which pacman) ]]; then
+    echo "You need to be using Manjaro/Arch Linux."
+    exit 1
+fi
+
+if [[ ! $(which pacaur) ]]; then
+    sudo pacman -S pacaur
+fi
+
+if [[ -d "/opt/discord" ]]; then
+    echo "Uninstalling Discord"
+    sudo rm /opt/discord -Rvf
+fi
+
+if [[ -d "~/.cache/discord ]]; then
+    echo "Destroying Discord cache"
+    rm ~/.cache/discord -Rvf
+fi
+
+# Warning! This will update your system.
+pacaur -Syu discord
+exit_code=${?}
+
+if [[ ! ${exit_code} ]]; then
+    echo "Error"
+    exit ${exit_code}
+fi
+
+# Make a symbolic link
+if [[ ! $(which discord) ]]; then
+    echo "Making a symbolic link"
+    ln -rsv /opt/discord/Discord /usr/local/bi/discord
+fi]
