@@ -14,7 +14,7 @@ if [[ -d "/opt/discord" ]]; then
     sudo rm /opt/discord -Rvf
 fi
 
-if [[ -d "~/.cache/discord ]]; then
+if [[ -d "~/.cache/discord" ]]; then
     echo "Destroying Discord cache"
     rm ~/.cache/discord -Rvf
 fi
@@ -31,5 +31,5 @@ fi
 # Make a symbolic link
 if [[ ! $(which discord) ]]; then
     echo "Making a symbolic link"
-    ln -rsv /opt/discord/Discord /usr/local/bi/discord
-fi]
+    ln -rsv /opt/discord/Discord /usr/local/bin/discord
+fi
